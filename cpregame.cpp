@@ -1,7 +1,8 @@
 #include "cpregame.h"
 #include "stdlib.h"
+#include <QDebug>
 
-CPreGame::CPreGame():m_allNum(26)
+CPreGame::CPreGame():m_allNum(26),m_rightNum(0)
 {
     m_questionArray.resize(m_allNum);
     GenarateQuestion();
@@ -50,13 +51,21 @@ bool CPreGame::RightOrWrong( int index, int temp_answer)
     {
     case OperatorS::Add:
         if(m_questionArray[index].num1 + m_questionArray[index].num2  == temp_answer)
+        {
+            m_rightNum++;
             return true;
+        }
     case OperatorS::Sub:
         if(m_questionArray[index].num1 - m_questionArray[index].num2  == temp_answer)
+        {
+            m_rightNum++;
             return true;
+        }
     }
     return false;
 }
+
+
 
 int CPreGame::GetTotalNum()
 {
@@ -76,4 +85,28 @@ void CPreGame::PrintEquation(int index)
         return;
     }
 
+}
+
+void CPreGame::Display()
+{
+    for(int i=0 ;i<m_allNum;i++)
+    {
+        PrintEquation(i);
+        int a;
+        cin>>a;
+        bool ret = RightOrWrong(i,a);
+        if(!ret)
+        {
+            cout<<"Wrong!"<<endl;
+        }
+    }
+    printf("the rate is: %f .\n", CalculateCorrectRate());
+
+}
+
+float CPreGame::CalculateCorrectRate()
+{
+    float rate = (float)m_rightNum/(float)m_allNum *100;
+    qDebug()<<m_rightNum<<" "<<m_allNum;
+    return rate;
 }

@@ -22,8 +22,10 @@ public:
     bool RightOrWrong( int index,int temp_answer = 10);
     int GetTotalNum();
     void PrintEquation(int dex);
+    void Display();
 
 private:
+    float CalculateCorrectRate();
     void GenarateQuestion();
     int m_rightNum;
     int m_allNum;
