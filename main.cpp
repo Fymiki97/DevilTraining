@@ -23,21 +23,16 @@ int main(int argc, char *argv[])
     }
     // CPlayer* player = new CPlayer();
     CPreGame* pregame = new CPreGame();
-    int num = pregame->GetTotalNum();
-    for(int i=0 ;i<num;i++)
-    {
-        pregame->PrintEquation(i);
-        int a;
-        cin>>a;
-        bool ret = pregame->RightOrWrong(i,a);
-        if(!ret)
-        {
-            cout<<"Wrong!"<<endl;
-        }
-    }
+    pregame->Display();
+    cout<<"Game Over!"<<endl;
+
 
     return a.exec();
 }
 
+// TODO
+//2024年5月7日 统计正确率  √
+//添加时间
+//n溯答
 
 
